@@ -99,6 +99,7 @@ class OpenSSLConfig():
 		print("default_days = 365", file = f)
 		print("default_crl_days = 30", file = f)
 		print("policy = policy_onlyCN", file = f)
+		print("preserve = yes", file = f)
 		if self.extension_count > 0:
 			print("x509_extensions = extensions", file = f)
 		print(file = f)
