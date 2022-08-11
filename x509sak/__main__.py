@@ -121,6 +121,8 @@ def main():
 	def genparser(parser):
 		parser.add_argument("-g", "--gen-keyspec", metavar = "keyspec", type = KeySpecification.from_cmdline_str, help = "Private key specification to generate for the certificate or CSR when it doesn't exist. Examples are rsa:1024 or ecc:secp256r1.")
 		parser.add_argument("-k", "--keytype", choices = [ "pem", "der", "hw" ], default = "pem", help = "Private key type. Can be any of %(choices)s. Defaults to %(default)s.")
+		parser.add_argument("--pkcs11-so-search", metavar = "path", type = str, default = _default_so_search_path, help = "Gives the path that will be searched for the \"dynamic\" and \"module\" shared objects. The \"dynamic\" shared object is libpkcs11.so, the \"module\" shared object can be changed by the --pkcs11-module option. The search path defaults to %(default)s.")
+		parser.add_argument("--pkcs11-module", metavar = "sofile", type = str, default = "opensc-pkcs11.so", help = "Name of the \"module\" shared object when using PKCS#11 keys. Defaults to %(default)s.")
 		parser.add_argument("-s", "--subject-dn", metavar = "subject", type = str, default = "/CN=New Cert", help = "Certificate/CSR subject distinguished name. Defaults to %(default)s.")
 		parser.add_argument("-d", "--validity-days", metavar = "days", type = int, default = 365, help = "When creating a certificate, number of days that the certificate will be valid for. Defaults to %(default)s days.")
 		parser.add_argument("-h", "--hashfnc", metavar = "alg", type = str, default = None, help = "Hash function to use for signing when creating a certificate. Defaults to the default hash function specified in the CA config.")
